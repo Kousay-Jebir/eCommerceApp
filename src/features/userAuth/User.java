@@ -7,7 +7,8 @@ public class User {
     private static int userID = 0;
     private String userName;
     private String userPassword;
-    private int userAccessLevel;
+    private int userAccessLevel; // 0 if customer , 1 if admin (used to check if an instance is a customer or an
+                                 // admin to allow OR deny certain permission :D )
     private Scanner scanner;
 
     User(String userName, String userPassword, int userAccessLevel) {
