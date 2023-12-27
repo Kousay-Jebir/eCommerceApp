@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class User {
 
-    private static int userID = 0;
+    private static int userCounter = 0;
+    private int userID;
     private String userName;
     private String userPassword;
     private int userAccessLevel; // 0 if customer , 1 if admin (used to check if an instance is a customer or an
@@ -13,7 +14,8 @@ public class User {
 
     User(String userName, String userPassword, int userAccessLevel) {
         this.userAccessLevel = userAccessLevel;
-        User.userID++;
+        userID = User.userCounter;
+        User.userCounter++;
         this.userPassword = userPassword;
         this.userName = userName;
         scanner = new Scanner(System.in);
