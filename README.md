@@ -26,10 +26,18 @@ Welcome to the Java E-Commerce Console Application! This project is a hands-on e
 -   Object-Oriented Programming (OOP) principles
 
 ## Details aboout each feature
+1. **UtilityClasses**
+During the development process , a problem of huge code duplication occured , it seems that there is a lot of common logic and methods between Users and Products in terms of they both are classes that store a vector of that type and have methods such as addUser , addProudct . to solve this issue i implemented an interface called Collectable 
+the User and Product classes both implement the interface 
+the utilityClass Collection<T> solves the code duplication issue so that it supports any type that we might need a vector for (here Users and products) where <T> represents a generic Type to avoid type restriction issues if we were to use Collectable as a type instead :D 
+
+Here is a diagram : 
+![](https://i.imgur.com/mdb1ygB.jpg)
+
 1. **Authentification**
 Here is a simple UML class diagram that illustrates the design of my authentification system simulation.
 ![enter image description here](https://i.imgur.com/lgWlSkJ.png)
-Users is a class that simulates a database , storing in a vecotr all kind of users , the attribute userAccessLevel	represents whether the user in quesion is an admin or a regular customer.
+Collection<User> is a class that simulates a database , storing in a vecotr all kind of users , the attribute userAccessLevel	represents whether the user in quesion is an admin or a regular customer.
 when the application shows the menu for the authentification section, the result of creating or logging in to a new account will results in an integer that represents the index of that user in the usersList array. That index is so important in my design because it is used to identify which user is currently logged in and using the application
 together with the userAccessLevel these two variables will determine for  a given user instance whether it  has access to certain features and will apply  the changes to the appropriate instance of User in the users array
 **In short words, Successfully logging in gives you the index of the account you logged into , and creating a new account automatically logs you in the index is used as an indicator to which user is currently using the application**
