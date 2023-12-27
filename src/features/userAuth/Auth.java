@@ -1,24 +1,26 @@
 package features.userAuth;
 
+import features.utilityClasses.Collection;
+
 import java.util.Scanner;
 
 public class Auth {
-    public static int findUser(Users users, String username, String password) {
+    public static int findUser(Collection<User> users, String username, String password) {
         int index = -1;
         int i = 0;
-        while (i < users.getUsers().size()) {
-            if (users.getUsers().get(i).getUserName().equals(username)) {
+        while (i < users.getCollection().size()) {
+            if (users.getCollection().get(i).getUserName().equals(username)) {
                 break; // Exit loop if username is found
             }
             i++;
         }
 
-        if (i == users.getUsers().size()) {
+        if (i == users.getCollection().size()) {
             System.out.println("Account with such username doesn't exist");
             return index;
         }
 
-        if (!users.getUsers().get(i).getUserPassword().equals(password)) {
+        if (!users.getCollection().get(i).getUserPassword().equals(password)) {
             System.out.println("Incorrect password");
             return index;
         }
@@ -26,8 +28,8 @@ public class Auth {
     } // returns index of the user we are trying to log in to
 
     // Checks if a given username is unique in the list of users
-    private static boolean isUsernameUnique(Users users, String username) {
-        for (User user : users.getUsers()) {
+    private static boolean isUsernameUnique(Collection<User> users, String username) {
+        for (User user : users.getCollection()) {
             if (user.getUserName().equals(username)) {
                 return false; // Username already exists
             }
@@ -36,7 +38,7 @@ public class Auth {
     }
 
     // Common method for creating a new user (admin or customer)
-    private static int createUser(Users users, String userType) {
+    private static int createUser(Collection<User> users, String userType) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username: ");
         String userName = sc.nextLine();
@@ -44,17 +46,19 @@ public class Auth {
         if (isUsernameUnique(users, userName)) {
             System.out.println("Enter password: ");
             String password = sc.nextLine();
+            System.out.println("Enter working category: ");
+            String category = sc.nextLine();
 
             User newUser = null;
             if (userType.equals("Admin")) {
-                newUser = new Admin(userName, password, 1);
+                newUser = new Admin(userName, password, 1, category);
             } else if (userType.equals("Customer")) {
                 newUser = new Customer(userName, password, 0);
             }
 
-            users.addUser(newUser);
+            users.addCollectable(newUser);
             System.out.println("Account made successfully, you will be logged in");
-            return users.getUsers().size() - 1;
+            return users.getCollection().size() - 1;
         } else {
             System.out.println("Username already exists. Please choose a different username.");
             return -1; // Indicate failure
@@ -62,7 +66,7 @@ public class Auth {
     }
 
     // Main method for user authentication menu
-    public static int authMenu(Users users) {
+    public static int authMenu(Collection<User> users) {
         Scanner sc = new Scanner(System.in);
         boolean isValidChoice = false;
         int choice = -1;

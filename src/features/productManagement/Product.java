@@ -2,7 +2,9 @@ package features.productManagement;
 
 import java.util.Scanner;
 
-public abstract class Product {
+import interfaces.Collectable;
+
+public abstract class Product implements Collectable {
     private Scanner scanner = new Scanner(System.in);
     private static int productCounter = 0;
     private int productID;
@@ -97,7 +99,7 @@ public abstract class Product {
 
     }
 
-    public void modifyProduct() {
+    public void modifyCollectable() {
         boolean isValidChoice = false;
 
         while (!isValidChoice) {

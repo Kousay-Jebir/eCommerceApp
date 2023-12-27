@@ -2,7 +2,9 @@ package features.userAuth;
 
 import java.util.Scanner;
 
-public class User {
+import interfaces.Collectable;
+
+public class User implements Collectable {
 
     private static int userCounter = 0;
     private int userID;
@@ -53,7 +55,8 @@ public class User {
         this.userAccessLevel = userAccessLevel;
     }
 
-    public void modifyUser() { // prompt the user to modify his username or password
+    @Override
+    public void modifyCollectable() { // prompt the user to modify his username or password
         boolean isValidChoice = false;
 
         while (!isValidChoice) {
