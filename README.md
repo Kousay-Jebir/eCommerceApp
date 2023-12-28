@@ -52,3 +52,10 @@ Modify a give product , delete it , add a new one
 Moderators are admins who can perform the same operation on the database of Users ( they work on the category "USER")
 whereas customers will not be able to perform these actions 
 The logic of this is implemented throught the Admin menu
+4. **Interactive men**
+The application as a whole is usuable via an interactive console interface menu
+Types of menus you will see are : 
+- Authentification menu 
+- Admin is logged in menu includes welcome page, dashboard for moderation and stock management
+- Customer is logged in menu includes welcome page, shopping interface , shopping cart interface and other .. 
+These menus are implemented throught various methods in each classes 
