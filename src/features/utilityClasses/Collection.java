@@ -21,8 +21,8 @@ public class Collection<T> {
     }
 
     public void listCollection() {
-        for (T user : items) {
-            user.toString();
+        for (T collectable : items) {
+            collectable.toString();
         }
     }
 
