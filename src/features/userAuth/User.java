@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import interfaces.Collectable;
 
-public class User implements Collectable {
+public abstract class User implements Collectable {
 
     private static int userCounter = 0;
     private int userID;
@@ -85,4 +85,13 @@ public class User implements Collectable {
             }
         }
     }
+
+    public String toString() {
+        System.out.println("ID: " + userID);
+        System.out.println("Username: " + userName);
+        System.out.println("Password: " + userPassword);
+        System.out.println("Accesslevel: " + userAccessLevel);
+        return "";
+    }
+
 }

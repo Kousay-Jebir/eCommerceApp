@@ -46,11 +46,11 @@ public class Auth {
         if (isUsernameUnique(users, userName)) {
             System.out.println("Enter password: ");
             String password = sc.nextLine();
-            System.out.println("Enter working category: ");
-            String category = sc.nextLine();
 
             User newUser = null;
             if (userType.equals("Admin")) {
+                System.out.println("Enter working category: ");
+                String category = sc.nextLine();
                 newUser = new Admin(userName, password, 1, category);
             } else if (userType.equals("Customer")) {
                 newUser = new Customer(userName, password, 0);

@@ -3,17 +3,30 @@ import features.userAuth.User;
 import features.productManagement.Product;
 import features.userAuth.Auth;
 import features.utilityClasses.Collection;
-import features.utilityClasses.Collection;
+import features.userAuth.Admin;
 
 public class App {
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        int authResult;
+        boolean isLoggedOut = false;
         Collection<User> usersDataBase = new Collection<User>();
-        int i = -1;
-        int j;
-        while (i == -1) {
-            j = Auth.authMenu(usersDataBase);
-            System.out.println(j);
+        Collection<Product> productsDataBase = new Collection<Product>();
+        while (true) {
+            isLoggedOut = false;
+
+            while (!isLoggedOut) {
+                try {
+                    authResult = Auth.authMenu(usersDataBase);
+                    User loggedInUser = usersDataBase.getCollection().get(authResult);
+                    if (loggedInUser.getUserAccessLevel() == 1) {
+                        isLoggedOut = ((Admin) loggedInUser).adminNavigation(authResult, usersDataBase,
+                                productsDataBase);
+                    }
+                } catch (Exception e) {
+                    // Handle the exception (e.g., print an error message)
+                    System.out.println("Error during authentication: ");
+                }
+            }
         }
     }
 }
