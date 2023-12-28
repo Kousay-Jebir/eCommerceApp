@@ -57,6 +57,6 @@ The application as a whole is usuable via an interactive console interface menu
 Types of menus you will see are : 
 - Authentification menu 
 - Admin is logged in menu includes welcome page, dashboard for moderation and stock management
-- Customer is logged in menu includes welcome page, shopping interface , shopping cart interface and other .. 
-These menus are implemented throught various methods in each classes 
-![enter image description here](https://i.imgur.com/NENqgZ6.jpg)
+- Customer is logged in menu includes welcome page, shopping interface , shopping cart interface and other ..
+- These menus are implemented throught various methods in each classes 
+![enter image description here](https://i.imgur.com/Hd79JOh.jpg)
