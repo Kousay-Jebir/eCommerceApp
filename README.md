@@ -33,10 +33,11 @@ the User and Product classes both implement the interface
 the utilityClass Collection<T> solves the code duplication issue so that it supports any type that we might need a vector for (here Users and products) where <T> represents a generic Type to avoid type restriction issues if we were to use Collectable as a type instead :D 
 
 Here is a diagram : 
-![]([https://i.imgur.com/mdb1ygB.jpg)
+![](https://i.imgur.com/mdb1ygB.jpg)
+
 1. **Authentification (feature)**
 Here is a simple UML class diagram that illustrates the design of my authentification system simulation.
-![enter image description here](https://i.imgur.com/lgWlSkJ.png)
+![enter image description here](https://i.imgur.com/lW0Z0pR.png)
 Collection<User> is a class that simulates a database , storing in a vecotr all kind of users , the attribute userAccessLevel	represents whether the user in quesion is an admin or a regular customer.
 when the application shows the menu for the authentification section, the result of creating or logging in to a new account will results in an integer that represents the index of that user in the usersList array. That index is so important in my design because it is used to identify which user is currently logged in and using the application
 together with the userAccessLevel these two variables will determine for  a given user instance whether it  has access to certain features and will apply  the changes to the appropriate instance of User in the users array
@@ -91,3 +92,14 @@ of course i used my utility class Collection
 The Order class represents an order with its id , the username of whoever made the order and of course the content of the order ,
 the user is able to access his history throughout the Customer menu 
 ![enter image description here](https://i.imgur.com/dxeBPDm.jpg)
+9. **Users rating system (optional feature)**
+This feature allows users to send feedback to the products in their transaction history (the products they purchased).
+Users are also able to  view ratings on each product in the market
+and that is via the shopping page menu 
+When a user chooses a searching option (either filtering or by label or viewing everything) he will then be prompted to see ratings for a specific product in his searching result 
+and then be prompted for adding a product to his cart.
+(implementation details in shoppinPageInterface)
+a Rating is class modeling a customer's rating including number of stars given to the product ( 1 to 4 stars) and  feedback message 
+POO IMPLEMENTATION OF THIS FEATURE :
+![enter image description here](https://i.imgur.com/Rp9wcKt.jpg)
+ 
