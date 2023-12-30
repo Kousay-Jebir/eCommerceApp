@@ -10,5 +10,4 @@ import features.userAuth.User;
 public interface Collectable {
 
     public void modifyCollectable();
-    // TODO: more methods
 }

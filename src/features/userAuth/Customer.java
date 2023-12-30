@@ -77,7 +77,7 @@ public class Customer extends User {
         customerTransactionHistory = new Collection<Order>();
     }
 
-    //TODO : Customer menu
+    // Customer menu
 
     public int viewProductRatingsInterface(Collection<Product> products) {
         while (true) {
@@ -230,7 +230,6 @@ public class Customer extends User {
             System.out.println("4) Log out");
             System.out.println("5) View transaction history");
             System.out.println("6) apply a discount");
-            //TODO : WISHLIST (FOR GIFTING FEATURE)
             choice = sc.nextInt();
             sc.nextLine();
             if (!(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5))
@@ -258,7 +257,6 @@ public class Customer extends User {
             System.out.println("2)Apply filters for auto-searching");
             System.out.println("3) view all products");
             System.out.println("4) go back");
-            //TODO : WISHLIST (FOR GIFTING FEATURE)
             choice = sc.nextInt();
             sc.nextLine();
             if (!(choice != 1 && choice != 2 && choice != 3 && choice != 4))

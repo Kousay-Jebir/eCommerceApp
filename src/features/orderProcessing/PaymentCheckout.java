@@ -51,7 +51,7 @@ public class PaymentCheckout {
                 cartProduct.getAssosiatedProduct().setProductQuantity(quantityInStock - quantityInCart);
             }
         }
-        //TODO : SAVE TRANSACTION HISTORY 
+
         return true;
 
     }

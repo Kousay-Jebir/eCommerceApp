@@ -20,7 +20,6 @@ public abstract class Product implements Collectable {
     private final Collection<Rating> customersRatings;
     private float averageOfStars = 0;
 
-    // TODO : RATING (how many starts ?)
     public void calculateAverageOfStars() {
         averageOfStars = 0;
         for (Rating rating : customersRatings.getCollection()) {
@@ -28,8 +27,6 @@ public abstract class Product implements Collectable {
         }
         averageOfStars = averageOfStars / customersRatings.getCollection().size();
     }
-
-    // TODO : GIFTING MECHANISM
 
     public Product(String label, String desc, float discount, int quantity, float price) {
         productID = Product.productCounter;
