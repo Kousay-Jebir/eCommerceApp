@@ -92,7 +92,7 @@ public abstract class Product implements Collectable {
         if (productDiscountPercent != 0) {
             System.out.println("Discount percentage : " + productDiscountPercent);
             System.out.println("Original price: " + productPrice);
-            System.out.println("Price after reduction : " + productPrice * (1 - productDiscountPercent));
+            System.out.println("Price after reduction : " + (productPrice * (1 - productDiscountPercent / 100)));
         } else {
             System.out.println("Price : " + productPrice);
         }

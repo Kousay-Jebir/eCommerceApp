@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import features.userAuth.User;
+import features.productManagement.Computer;
 import features.productManagement.Product;
 import features.userAuth.Auth;
 import features.userAuth.Customer;
@@ -12,6 +13,7 @@ public class App {
         boolean isLoggedOut = false;
         Collection<User> usersDataBase = new Collection<User>();
         Collection<Product> productsDataBase = new Collection<Product>();
+        productsDataBase.addCollectable(new Computer("asus", "asus", 50, 4, 1500, "i5", "gtx", "16gb"));
         while (true) {
             isLoggedOut = false;
 

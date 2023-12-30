@@ -24,12 +24,12 @@ public class CartProduct {
     //Cart management methods (will be used in the Cart menu)
     public void incrementQuantityInCart(int quantity) {
         quantityInCart += quantity;
-        totalPrice += assosiatedProduct.getProductPrice() * (1 - assosiatedProduct.getProductDiscountPercent());
+        totalPrice += assosiatedProduct.getProductPrice() * (1 - assosiatedProduct.getProductDiscountPercent() / 100);
     }
 
     public void decrementQuantityInCart(int quantity, Collection<CartProduct> cartProducts) {
         quantityInCart -= quantity;
-        totalPrice -= assosiatedProduct.getProductPrice() * (1 - assosiatedProduct.getProductDiscountPercent())
+        totalPrice -= assosiatedProduct.getProductPrice() * (1 - assosiatedProduct.getProductDiscountPercent() / 100)
                 * quantityInCart;
         //Handle scenario where quantity = 0
         if (quantityInCart == 0)
@@ -53,7 +53,8 @@ public class CartProduct {
     public CartProduct(Product assosiatedProduct, int quantityInCart) {
         this.assosiatedProduct = assosiatedProduct;
         this.quantityInCart = quantityInCart;
-        this.totalPrice = assosiatedProduct.getProductPrice() * (1 - assosiatedProduct.getProductDiscountPercent())
+        this.totalPrice = assosiatedProduct.getProductPrice()
+                * (1 - assosiatedProduct.getProductDiscountPercent() / 100)
                 * quantityInCart;
     }
 

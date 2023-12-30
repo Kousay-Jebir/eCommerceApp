@@ -11,11 +11,39 @@ public class Cart {
     private Collection<CartProduct> cartItems = new Collection<CartProduct>();
     private float totalPrice = 0;
 
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Collection<CartProduct> getCartItems() {
+        return cartItems;
+    }
+
     public void addToCart(Product product, int quantity) {
-        //extract a CartProduct from the given product 
-        CartProduct productToAdd = new CartProduct(product, quantity);
-        cartItems.addCollectable(productToAdd);
-        totalPrice = totalPrice + productToAdd.getTotalPrice();
+        // Check if the product is already in the cart
+        CartProduct existingProduct = findProductInCart(product);
+
+        if (existingProduct != null) {
+            // Product is already in the cart, update the quantity
+            existingProduct.incrementQuantityInCart(quantity);
+            totalPrice += existingProduct.getAssosiatedProduct().getProductPrice()
+                    * (1 - existingProduct.getAssosiatedProduct().getProductDiscountPercent() / 100) * quantity;
+        } else {
+            // Product is not in the cart, add a new CartProduct
+            CartProduct productToAdd = new CartProduct(product, quantity);
+            cartItems.addCollectable(productToAdd);
+            totalPrice = totalPrice + productToAdd.getTotalPrice();
+        }
+    }
+
+    // Helper method to find a product in the cart
+    private CartProduct findProductInCart(Product product) {
+        for (CartProduct cartProduct : cartItems.getCollection()) {
+            if (cartProduct.getAssosiatedProduct().equals(product)) {
+                return cartProduct;
+            }
+        }
+        return null; // Product not found in the cart
     }
 
     public int cartMenu() {
@@ -63,10 +91,18 @@ public class Cart {
             System.out.println("Enter the quantity to add:");
             int quantity = sc.nextInt();
             sc.nextLine(); // consume the newline character
-            selectedProduct.incrementQuantityInCart(quantity);
-            totalPrice += selectedProduct.getAssosiatedProduct().getProductPrice()
-                    * (1 - selectedProduct.getAssosiatedProduct().getProductDiscountPercent())
-                    * quantity;
+
+            // Check if the requested quantity is available in stock
+            if (quantity + selectedProduct.getQuantityInCart() <= selectedProduct.getAssosiatedProduct()
+                    .getProductQuantity()) {
+                selectedProduct.incrementQuantityInCart(quantity);
+                totalPrice += selectedProduct.getAssosiatedProduct().getProductPrice()
+                        * (1 - selectedProduct.getAssosiatedProduct().getProductDiscountPercent() / 100)
+                        * quantity;
+                System.out.println("Quantity added successfully!");
+            } else {
+                System.out.println("Not enough quantity in stock. Please choose a smaller quantity.");
+            }
         } else {
             System.out.println("Invalid index. No product found.");
         }
@@ -84,7 +120,7 @@ public class Cart {
             sc.nextLine(); // consume the newline character
             selectedProduct.decrementQuantityInCart(quantity, cartItems);
             totalPrice -= selectedProduct.getAssosiatedProduct().getProductPrice()
-                    * (1 - selectedProduct.getAssosiatedProduct().getProductDiscountPercent())
+                    * (1 - selectedProduct.getAssosiatedProduct().getProductDiscountPercent() / 100)
                     * quantity;
         } else {
             System.out.println("Invalid index. No product found.");
@@ -104,6 +140,11 @@ public class Cart {
         } else {
             System.out.println("Invalid index. No product found.");
         }
+    }
+
+    public void clearCart() {
+        cartItems.getCollection().clear();
+        totalPrice = 0;
     }
 
 }
