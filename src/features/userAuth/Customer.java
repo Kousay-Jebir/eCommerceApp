@@ -22,6 +22,19 @@ public class Customer extends User {
         return customerTransactionHistory;
     }
 
+    // Add this method to the Customer class
+    public void applyDiscount(float discountPercentage) {
+        if (discountPercentage >= 0 && discountPercentage <= 100) {
+            float discountFactor = 1 - (discountPercentage / 100);
+            float discountedTotal = customerCart.getTotalPrice() * discountFactor;
+            customerCart.setTotalPrice(discountedTotal);
+            System.out.println("Discount of " + discountPercentage + "% applied successfully!");
+            System.out.println("Updated Cart Total: $" + discountedTotal);
+        } else {
+            System.out.println("Invalid discount percentage. Please provide a value between 0 and 100.");
+        }
+    }
+
     public void viewTransactionHistory() {
         System.out.println("Transaction History:");
 
@@ -48,6 +61,7 @@ public class Customer extends User {
                         // Create a new Rating object and add it to the product's ratings
                         Rating newRating = new Rating(ratingValue, feedback, this);
                         purchasedProduct.getCustomerRatings().addCollectable(newRating);
+                        purchasedProduct.calculateAverageOfStars();
                         System.out.println("Thank you for your rating!");
                     } else {
                         System.out.println("Invalid rating value. Rating should be between 1 and 4.");
@@ -215,17 +229,24 @@ public class Customer extends User {
             System.out.println("3) Account settings");
             System.out.println("4) Log out");
             System.out.println("5) View transaction history");
+            System.out.println("6) apply a discount");
             //TODO : WISHLIST (FOR GIFTING FEATURE)
             choice = sc.nextInt();
             sc.nextLine();
             if (!(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5))
                 isValidChoice = true;
+            if (choice == 6) {
+                System.out.println("Enter the discount percentage:");
+                float discountPercentage = sc.nextFloat();
+                sc.nextLine(); // Consume the newline character
+                applyDiscount(discountPercentage);
+                isValidChoice = true;
+            }
         }
         return choice;
     }
 
     public int customerShoppingPage(int userIndex, Collection<Product> products) {
-        //TODO : shopping page needs implementation of dynamic search and filtering feature :(
         System.out.println(
                 "Welcome to the showroom ,You can choose to search for products or apply filters for auto searching");
 
@@ -272,7 +293,7 @@ public class Customer extends User {
                 System.out.println("1) Computers only");
                 System.out.println("2) Cameras only");
                 System.out.println("3) Price range");
-                System.out.println("4) Ratings"); // TODO: Implement filter by rating
+                System.out.println("4) Ratings");
 
                 int filterChoice = sc.nextInt();
                 sc.nextLine(); // Consume the newline character
@@ -282,11 +303,11 @@ public class Customer extends User {
                 switch (filterChoice) {
                     case 1:
                         // Filter by category (Computers only)
-                        filteredProducts = FilteredProducts.filteredProducts(products, 1, 0, 0, null);
+                        filteredProducts = FilteredProducts.filteredProducts(products, 1, 0, 0, 0, 0);
                         break;
                     case 2:
                         // Filter by category (Cameras only)
-                        filteredProducts = FilteredProducts.filteredProducts(products, 2, 0, 0, null);
+                        filteredProducts = FilteredProducts.filteredProducts(products, 2, 0, 0, 0, 0);
                         break;
                     case 3:
                         // Filter by price range
@@ -298,12 +319,21 @@ public class Customer extends User {
                         float maxPrice = sc.nextFloat();
                         sc.nextLine(); // Consume the newline character
 
-                        filteredProducts = FilteredProducts.filteredProducts(products, 3, minPrice, maxPrice, null);
-                        int doesUserAddToCartResult = addToCartInterface(filteredProducts);
+                        filteredProducts = FilteredProducts.filteredProducts(products, 3, minPrice, maxPrice, 0, 0);
+                        // int doesUserAddToCartResult = addToCartInterface(filteredProducts);
                         break;
                     case 4:
-                        // TODO: Implement filter by rating
-                        // filteredProducts = FilteredProducts.filteredProducts(products, 4, 0, 0, "desiredRating");
+                        // Filter by ratings
+                        System.out.println("Enter minimum stars average:");
+                        float minStars = sc.nextFloat();
+                        sc.nextLine(); // Consume the newline character
+
+                        System.out.println("Enter maximum stars average:");
+                        float maxStars = sc.nextFloat();
+                        sc.nextLine(); // Consume the newline character
+
+                        filteredProducts = FilteredProducts.filteredProducts(products, 4, 0, 0, minStars, maxStars);
+                        // int doesUserAddToCartResult = addToCartInterface(filteredProducts);
                         break;
                     default:
                         System.out.println("Invalid filter choice.");

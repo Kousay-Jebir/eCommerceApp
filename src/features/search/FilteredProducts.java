@@ -8,7 +8,7 @@ import features.productManagement.Product;
 public class FilteredProducts {
     public static Collection<Product> filteredProducts(Collection<Product> products, int action, float minPrice,
             float maxPrice,
-            String review) {
+            float minAverageOfStars, float maxAverageOfStars) {
         Collection<Product> filteredProducts = new Collection<Product>();
         //action == 1 : user choser to filter by category (Computers only)
         if (action == 1) {
@@ -36,7 +36,12 @@ public class FilteredProducts {
         }
 
         else { //filter by ratings
-                 //TODO implement filter by rating
+            for (Product product : products.getCollection()) {
+                if (product.getAverageOfStars() >= minAverageOfStars
+                        && product.getAverageOfStars() <= maxAverageOfStars) {
+                    filteredProducts.addCollectable(product);
+                }
+            }
         }
         return filteredProducts;
     }

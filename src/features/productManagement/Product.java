@@ -18,8 +18,17 @@ public abstract class Product implements Collectable {
     protected float productPrice;
 
     private final Collection<Rating> customersRatings;
+    private float averageOfStars = 0;
 
     // TODO : RATING (how many starts ?)
+    public void calculateAverageOfStars() {
+        averageOfStars = 0;
+        for (Rating rating : customersRatings.getCollection()) {
+            averageOfStars += rating.getNumberOfStars();
+        }
+        averageOfStars = averageOfStars / customersRatings.getCollection().size();
+    }
+
     // TODO : GIFTING MECHANISM
 
     public Product(String label, String desc, float discount, int quantity, float price) {
@@ -63,6 +72,10 @@ public abstract class Product implements Collectable {
 
     public Collection<Rating> getCustomerRatings() {
         return customersRatings;
+    }
+
+    public float getAverageOfStars() {
+        return averageOfStars;
     }
 
     public void setProductLabel(String label) {

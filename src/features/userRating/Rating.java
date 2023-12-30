@@ -13,6 +13,10 @@ public class Rating {
         this.assosiatedCustomer = assosiatedCustomer;
     }
 
+    public int getNumberOfStars() {
+        return numberOfStars;
+    }
+
     public void ratingMention() {
         switch (numberOfStars) {
             case 1:

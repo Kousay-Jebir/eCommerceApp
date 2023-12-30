@@ -15,6 +15,10 @@ public class Cart {
         return totalPrice;
     }
 
+    public void setTotalPrice(float total) {
+        totalPrice = total;
+    }
+
     public Collection<CartProduct> getCartItems() {
         return cartItems;
     }

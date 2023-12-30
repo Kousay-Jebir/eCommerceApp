@@ -16,7 +16,6 @@ public class Admin extends User {
         worksOnCategory = category;
 
     }
-    //TODO : ADMIN MENU
 
     public int adminLoggedInWelcome(int userIndex) {
         //this section is a welcoming page where the admin can choose to log out or access his dashboard
