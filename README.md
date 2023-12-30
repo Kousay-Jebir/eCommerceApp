@@ -1,5 +1,16 @@
 ## Java E-Commerce Console App
+## Note to Professor
 
+Dear Mr Issam,
+
+I would like to express my sincere apologies for the presence of duplicated code in this project. Unfortunately, due to time constraints, I wasn't able to dedicate as much effort as I would have liked to refactor and write the cleanest code possible.
+
+Throughout the development process, I made a conscious effort to apply object-oriented programming (OOP) principles and devise my own design solutions without relying on external resources, such as AI. I understand the importance of clean and modular code, and I assure you that I have done my best to maintain a logical structure and adhere to OOP principles.
+for simplicity reasons , i didn't include Exception and error handling throught the application 
+I appreciate your understanding and valuable feedback on ways to improve code quality. Thank you for your guidance and support.
+
+Sincerely,
+[Kousay Jebir]
 ### Overview
 
 Welcome to the Java E-Commerce Console Application! This project is a hands-on exploration of e-commerce functionalities within a console-based environment. Developed for a college exam, this application showcases key concepts of Java programming and object-oriented design while simulating the essential aspects of an online shopping platform.
@@ -18,8 +29,8 @@ Welcome to the Java E-Commerce Console Application! This project is a hands-on e
 ### Optional Features Chosen
  1. **User Reviews and Ratings**  
 - Users can add and view feedback on purchased products.  
- 2. **Gifting Option**
- - Users are able to send gifts to eachother
+ 2. **Discount on cart**
+ - Customer are able to apply a discount to reduce their cart total price
 
 ### Technologies Used
 -   Java
@@ -47,11 +58,10 @@ Similar to users , Collection<Product> is used to to store all kind of products
 Products are classified by a Category ( either a computer or a Camera )
 ![enter image description here](https://i.imgur.com/NENqgZ6.jpg)
 3. **CRUD Operations on products and users (feature)**
-each admin is supposed to work on only one Category of a product and perform the following operations : 
-Modify a give product , delete it , add a new one 
-Moderators are admins who can perform the same operation on the database of Users ( they work on the category "USER")
-whereas customers will not be able to perform these actions 
-The logic of this is implemented throught the Admin menu
+tha admin is able throught his menu to moderate and manage the stock
+moderation includes : crud operations on the user's database 
+stock management includes : crud operations on products
+please note that an admin is not a customer , the admin doesn't have cusotmer privilages and cannot do anything else with his account other than moderation and stock management for variety purposes
 4. **Interactive menues (feature/design decision)**
 The application as a whole is usuable via an interactive console interface menu
 Types of menus you will see are : 
@@ -102,4 +112,6 @@ and then be prompted for adding a product to his cart.
 a Rating is class modeling a customer's rating including number of stars given to the product ( 1 to 4 stars) and  feedback message 
 POO IMPLEMENTATION OF THIS FEATURE :
 ![enter image description here](https://i.imgur.com/Rp9wcKt.jpg)
+10. **Discount on cart total (optional feature)**
+The customer is able throught the menu to apply a discount percentage , this discount is the applied to his current cart total price via the method applydiscount() in the Customer Class
  
