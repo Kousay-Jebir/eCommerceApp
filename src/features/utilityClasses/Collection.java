@@ -23,6 +23,7 @@ public class Collection<T> {
     public void listCollection() {
         for (T collectable : items) {
             collectable.toString();
+            System.out.println("-----------------------------");
         }
     }
 

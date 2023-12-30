@@ -85,7 +85,9 @@ public class Admin extends User {
                     System.out.println("Type User's ID to ban");
                     users.removeCollectable(users.getCollection().get(users.findUserById(sc.nextInt())));
                     isValidChoice = true;
+                    break;
                 case 3:
+                    isValidChoice = true;
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -189,8 +191,10 @@ public class Admin extends User {
                     int productIdToModify = sc.nextInt();
                     sc.nextLine(); // Consume the newline character
                     products.getCollection().get(products.findProductById(productIdToModify)).modifyCollectable();
+                    isValidChoice = true;
                     break;
                 case 5:
+                    isValidChoice = true;
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -205,7 +209,7 @@ public class Admin extends User {
         boolean logout = false;
         boolean shouldGoBack = false;
 
-        while (!logout && !shouldGoBack) {
+        while (!logout /*&& !shouldGoBack*/) {
             int loggedInWelcomeResult = adminLoggedInWelcome(userIndex);
             int adminDashBoardResult = -1;
             int adminDashBoardModerationResult = -1;

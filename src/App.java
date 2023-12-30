@@ -2,6 +2,7 @@ import java.util.Scanner;
 import features.userAuth.User;
 import features.productManagement.Product;
 import features.userAuth.Auth;
+import features.userAuth.Customer;
 import features.utilityClasses.Collection;
 import features.userAuth.Admin;
 
@@ -20,6 +21,9 @@ public class App {
                     User loggedInUser = usersDataBase.getCollection().get(authResult);
                     if (loggedInUser.getUserAccessLevel() == 1) {
                         isLoggedOut = ((Admin) loggedInUser).adminNavigation(authResult, usersDataBase,
+                                productsDataBase);
+                    } else {
+                        isLoggedOut = ((Customer) loggedInUser).customerNavigation(authResult,
                                 productsDataBase);
                     }
                 } catch (Exception e) {

@@ -151,8 +151,7 @@ public abstract class Product implements Collectable {
     }
 
     public String toString() {
-        System.out.println("Product label: " + productLabel);
-        System.out.println("Product price: " + productPrice);
+        productInfo();
         return "";
     }
 }
