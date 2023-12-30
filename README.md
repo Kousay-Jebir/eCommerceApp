@@ -72,3 +72,23 @@ the user is able to interact with his cart throught a menu and perform actions (
 all of this is ensured via the Cart class 
 here is a diagram that explains the OOP implementation of the shopping cart
 ![enter image description here](https://i.imgur.com/qzubqsH.jpg)
+6. **Dynamic product search and filtering (feature)**
+The user is able ( via the shopping page interface throught the menu) to perform two search actions :
+- List all products in stock : 
+this option is equivalent to searching without provided user restrictions
+- search a product via its label :
+the class SearchProduct provides a method that searches an item from a given user input and returns it for display 
+- auto searching vis filtering :
+the user is able to choose to apply a certain filtering option. A method provided by the FilteredProducts is responsible to generate a new collection of items based on the user's filter choice. The new collection is then provided back to be displayed in the menu 
+![enter image description here](https://i.imgur.com/8InQF7z.jpg)
+7. **Payment checkout + Inventory updates (feature)**
+given the user's cart , when a user attemps to checkout his purchase the appropriate methods provided by PaymentCheckout class are responsible for checking if the quantities in stock for each item the user is trying to purchase is available or not .
+I provided implementation to handle the scneario where it is not , therefore the payment is refused  , otherwise it is accepted the cart is then cleared and the user's order is saved in a history 
+Please checkout the PaymentCheckout class i implemented for the detailed logic .
+8. **Transaction history (feature)**
+similary to the cart design , there is a composition relationship between the Customer class and Order class .
+the customer , when instanciated is given a Collection of Orders 
+of course i used my utility class Collection
+The Order class represents an order with its id , the username of whoever made the order and of course the content of the order ,
+the user is able to access his history throughout the Customer menu 
+![enter image description here](https://i.imgur.com/dxeBPDm.jpg)
