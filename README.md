@@ -33,8 +33,7 @@ the User and Product classes both implement the interface
 the utilityClass Collection<T> solves the code duplication issue so that it supports any type that we might need a vector for (here Users and products) where <T> represents a generic Type to avoid type restriction issues if we were to use Collectable as a type instead :D 
 
 Here is a diagram : 
-![](https://i.imgur.com/mdb1ygB.jpg)
-
+![]([https://i.imgur.com/mdb1ygB.jpg)
 1. **Authentification (feature)**
 Here is a simple UML class diagram that illustrates the design of my authentification system simulation.
 ![enter image description here](https://i.imgur.com/lgWlSkJ.png)
