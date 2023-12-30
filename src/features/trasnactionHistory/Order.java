@@ -11,12 +11,24 @@ public class Order {
     private float orderAmount;
     private Collection<CartProduct> order;
 
+    public Collection<CartProduct> getOrder() {
+        return order;
+    }
+
     public Order(Collection<CartProduct> cartContent, float totalPrice, String userName) {
         Order.orderCounter++;
         orderID = orderCounter;
-        order = cartContent;
         orderAmount = totalPrice;
         orderUsername = userName;
+
+        // Create a new collection and add copies of CartProducts
+        order = new Collection<CartProduct>();
+        for (CartProduct originalProduct : cartContent.getCollection()) {
+            CartProduct copiedProduct = new CartProduct(
+                    originalProduct.getAssosiatedProduct(),
+                    originalProduct.getQuantityInCart());
+            order.addCollectable(copiedProduct);
+        }
     }
 
     @Override

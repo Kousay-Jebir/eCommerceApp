@@ -2,6 +2,8 @@ package features.productManagement;
 
 import java.util.Scanner;
 
+import features.userRating.Rating;
+import features.utilityClasses.Collection;
 import interfaces.Collectable;
 
 public abstract class Product implements Collectable {
@@ -14,6 +16,9 @@ public abstract class Product implements Collectable {
     protected float productDiscountPercent;
     protected int productQuantity;
     protected float productPrice;
+
+    private final Collection<Rating> customersRatings;
+
     // TODO : RATING (how many starts ?)
     // TODO : GIFTING MECHANISM
 
@@ -26,6 +31,9 @@ public abstract class Product implements Collectable {
         productDiscountPercent = discount;
         productQuantity = quantity;
         productPrice = price;
+
+        customersRatings = new Collection<Rating>();
+
     }
 
     // getters and setters
@@ -51,6 +59,10 @@ public abstract class Product implements Collectable {
 
     public int getProductID() {
         return productID;
+    }
+
+    public Collection<Rating> getCustomerRatings() {
+        return customersRatings;
     }
 
     public void setProductLabel(String label) {
@@ -154,4 +166,5 @@ public abstract class Product implements Collectable {
         productInfo();
         return "";
     }
+
 }

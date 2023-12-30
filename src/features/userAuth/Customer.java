@@ -7,7 +7,9 @@ import features.productManagement.Product;
 import features.search.FilteredProducts;
 import features.search.SearchProduct;
 import features.shoppingCart.Cart;
+import features.shoppingCart.CartProduct;
 import features.trasnactionHistory.Order;
+import features.userRating.Rating;
 import features.utilityClasses.Collection;
 
 public class Customer extends User {
@@ -22,9 +24,36 @@ public class Customer extends User {
 
     public void viewTransactionHistory() {
         System.out.println("Transaction History:");
+
         for (Order order : customerTransactionHistory.getCollection()) {
             System.out.println(order);
             System.out.println("-----------------------------");
+
+            // Ask the user if they want to leave a rating for each product in the order
+            for (CartProduct cartProduct : order.getOrder().getCollection()) {
+                Product purchasedProduct = cartProduct.getAssosiatedProduct();
+                System.out.println(
+                        "Do you want to leave a rating for " + purchasedProduct.getProductLabel() + "? (yes/no)");
+                String leaveRatingChoice = sc.nextLine();
+
+                if (leaveRatingChoice.equalsIgnoreCase("yes")) {
+                    System.out.println("Enter your rating (1-4):");
+                    int ratingValue = sc.nextInt();
+                    sc.nextLine(); // Consume the newline character
+
+                    // Validate the rating value (assuming it should be between 1 and 4)
+                    if (ratingValue >= 1 && ratingValue <= 4) {
+                        System.out.println("Enter your feedback:");
+                        String feedback = sc.nextLine();
+                        // Create a new Rating object and add it to the product's ratings
+                        Rating newRating = new Rating(ratingValue, feedback, this);
+                        purchasedProduct.getCustomerRatings().addCollectable(newRating);
+                        System.out.println("Thank you for your rating!");
+                    } else {
+                        System.out.println("Invalid rating value. Rating should be between 1 and 4.");
+                    }
+                }
+            }
         }
     }
 
@@ -35,6 +64,35 @@ public class Customer extends User {
     }
 
     //TODO : Customer menu
+
+    public int viewProductRatingsInterface(Collection<Product> products) {
+        while (true) {
+            System.out.println("Enter the number of the product you want to view ratings for enter -1 to exit:");
+            int productNumber = sc.nextInt();
+            sc.nextLine(); // Consume the newline character
+
+            if (productNumber > 0 && productNumber <= products.getCollection().size()) {
+                Product selectedProduct = products.getCollection().get(productNumber - 1);
+                selectedProduct.getCustomerRatings().listCollection();
+            } else if (productNumber == -1)
+                return 0;
+        }
+
+    }
+
+    public int viewProductRatingsInterface(Product product) {
+        while (true) {
+            System.out.println("Enter the number of the product you want to view ratings for enter -1 to exit:");
+            int productNumber = sc.nextInt();
+            sc.nextLine(); // Consume the newline character
+
+            if (productNumber == 1) {
+                product.getCustomerRatings().listCollection();
+            } else if (productNumber == -1)
+                return 0;
+        }
+
+    }
 
     public int addToCartInterface(Collection<Product> products) {
         System.out.println("Adding Items to Cart Interface");
@@ -186,11 +244,14 @@ public class Customer extends User {
                 isValidChoice = true;
         }
         int promptToAddToCart;
+        int promptToviewProductRatings;
         switch (choice) {
 
             case 3:
                 products.listCollection();
+                promptToviewProductRatings = viewProductRatingsInterface(products);
                 promptToAddToCart = addToCartInterface(products);
+
                 break;
             case 1:
                 String searchInput = "";
@@ -201,6 +262,8 @@ public class Customer extends User {
                     System.out.println("No product(s) found");
                 else {
                     foundProduct.productInfo();
+
+                    promptToviewProductRatings = viewProductRatingsInterface(foundProduct);
                     promptToAddToCart = addToCartInterface(foundProduct);
                 }
                 break;
@@ -251,6 +314,8 @@ public class Customer extends User {
                     System.out.println("No product(s) found");
                 else {
                     filteredProducts.listCollection();
+
+                    promptToviewProductRatings = viewProductRatingsInterface(filteredProducts);
                     promptToAddToCart = addToCartInterface(filteredProducts);
                 }
                 break;
