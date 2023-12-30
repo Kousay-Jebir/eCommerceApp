@@ -48,8 +48,12 @@ public class PaymentCheckout {
                         + " is not sufficient");
                 return false;
             } else {
+
+                //Payment interface
                 cartProduct.getAssosiatedProduct().setProductQuantity(quantityInStock - quantityInCart);
             }
+
+
         }
 
         return true;
