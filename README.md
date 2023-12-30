@@ -1,4 +1,8 @@
 ## Java E-Commerce Console App
+## IMPORTANT : HOW TO RUN
+navigate the the root folder of the project and open a terminal window there , execute the following command
+<java --enable-preview -jar eCommerceApp.jar>
+
 ## Note to Professor
 
 Dear Mr Issam,
