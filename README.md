@@ -1,5 +1,16 @@
 ## Java E-Commerce Console App
+## Note to Professor
 
+Dear Mr Issam,
+
+I would like to express my sincere apologies for the presence of duplicated code in this project. Unfortunately, due to time constraints, I wasn't able to dedicate as much effort as I would have liked to refactor and write the cleanest code possible.
+
+Throughout the development process, I made a conscious effort to apply object-oriented programming (OOP) principles and devise my own design solutions without relying on external resources, such as AI. I understand the importance of clean and modular code, and I assure you that I have done my best to maintain a logical structure and adhere to OOP principles.
+
+I appreciate your understanding and valuable feedback on ways to improve code quality. Thank you for your guidance and support.
+
+Sincerely,
+[Kousay Jebir]
 ### Overview
 
 Welcome to the Java E-Commerce Console Application! This project is a hands-on exploration of e-commerce functionalities within a console-based environment. Developed for a college exam, this application showcases key concepts of Java programming and object-oriented design while simulating the essential aspects of an online shopping platform.
