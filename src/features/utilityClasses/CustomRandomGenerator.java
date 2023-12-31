@@ -4,14 +4,6 @@ import java.util.Random;
 
 public class CustomRandomGenerator {
 
-    // public static void main(String[] args) {
-    //     int[] numbersToGenerate = {0, 15, 20, 50};
-    //     double[] probabilities = {0.8, 0.1, 0.08, 0.02};
-
-    //     int generatedNumber = generateNumber(numbersToGenerate, probabilities);
-    //     System.out.println("Generated Number: " + generatedNumber);
-    // }
-
     public static float generateNumber(float[] numbers, float[] probabilities) {
         if (numbers.length != probabilities.length) {
             throw new IllegalArgumentException("Arrays must have the same length");
