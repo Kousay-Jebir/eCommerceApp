@@ -118,5 +118,11 @@ a Rating is class modeling a customer's rating including number of stars given t
 POO IMPLEMENTATION OF THIS FEATURE :
 ![enter image description here](https://i.imgur.com/Rp9wcKt.jpg)
 10. **Discount on cart total (optional feature)**
-The customer is able throught the menu to apply a discount percentage , this discount is the applied to his current cart total price via the method applydiscount() in the Customer Class
+The customer is able throught the menu to apply a discount percentage
+,the class CustomNumberGenerator is responsible for generating a random discount amount
+, the class Discount defines a set of discounts along with their probabilities of getting generated 
+and calls the method provided by the CustomerNumberGenerator giving it the set of discounts and their probabilities
+
+this OOP implementation provides a clean way to let the developer play around with the probabilities and the possible results without touching anything else in the code
+the user is able to try his luck throught the welcoming page menu
  
