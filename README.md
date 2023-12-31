@@ -125,6 +125,7 @@ and calls the method provided by the CustomerNumberGenerator giving it the set o
 
 this OOP implementation provides a clean way to let the developer play around with the probabilities and the possible results without touching anything else in the code
 the user is able to try his luck throught the welcoming page menu
+
 11. **Basic Payment system(feature)**
 The user is prompted to enter his credit card credentials when he wants to issue the payment,
 i implemented a basic information validation system + a simulation to check if the user has enough credit for his payment
