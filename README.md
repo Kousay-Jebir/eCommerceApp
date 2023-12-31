@@ -48,6 +48,7 @@ the User and Product classes both implement the interface
 the utilityClass Collection<T> solves the code duplication issue so that it supports any type that we might need a vector for (here Users and products) where <T> represents a generic Type to avoid type restriction issues if we were to use Collectable as a type instead :D 
 Here is a diagram : 
 ![](https://i.imgur.com/mdb1ygB.jpg)
+
 2.**Utility classes (CustomRandomGenerator) (design decision)**
 This is class is responsible for generating a random number from a given array of numbers as long as an array of probabilities to those numbers this class is used in the payment simulation as well as the promotion discount feature
 3.**Authentification (feature)**
