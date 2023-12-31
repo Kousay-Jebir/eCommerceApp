@@ -49,24 +49,37 @@ the utilityClass Collection<T> solves the code duplication issue so that it supp
 Here is a diagram : 
 ![](https://i.imgur.com/mdb1ygB.jpg)
 
+
 2.**Utility classes (CustomRandomGenerator) (design decision)**
 This is class is responsible for generating a random number from a given array of numbers as long as an array of probabilities to those numbers this class is used in the payment simulation as well as the promotion discount feature
+
 3.**Authentification (feature)**
+
 Here is a simple UML class diagram that illustrates the design of my authentification system simulation.
 ![enter image description here](https://i.imgur.com/lW0Z0pR.png)
+
 Collection<User> is a class that simulates a database , storing in a vecotr all kind of users , the attribute userAccessLevel	represents whether the user in quesion is an admin or a regular customer.
 when the application shows the menu for the authentification section, the result of creating or logging in to a new account will results in an integer that represents the index of that user in the usersList array. That index is so important in my design because it is used to identify which user is currently logged in and using the application
+
 together with the userAccessLevel these two variables will determine for  a given user instance whether it  has access to certain features and will apply  the changes to the appropriate instance of User in the users array
+
 **In short words, Successfully logging in gives you the index of the account you logged into , and creating a new account automatically logs you in the index is used as an indicator to which user is currently using the application**
+
 4.**Product Management (feature)**
+
 Similar to users , Collection<Product> is used to to store all kind of products 
 Products are classified by a Category ( either a computer or a Camera )
+
 ![enter image description here](https://i.imgur.com/NENqgZ6.jpg)
+
 5.**CRUD Operations on products and users (feature)**
+
 tha admin is able throught his menu to moderate and manage the stock
 moderation includes : crud operations on the user's database 
 stock management includes : crud operations on products
 please note that an admin is not a customer , the admin doesn't have cusotmer privilages and cannot do anything else with his account other than moderation and stock management for variety purposes
+
+
 6.**Interactive menues (feature/design decision)**
 The application as a whole is usuable via an interactive console interface menu
 Types of menus you will see are : 
@@ -75,7 +88,9 @@ Types of menus you will see are :
 - Customer is logged in menu includes welcome page, shopping interface , shopping cart interface and other ..
 - These menus are implemented throught various methods in each classes 
 ![enter image description here](https://i.imgur.com/Hd79JOh.jpg)
+
 7.**Shopping Cart (feature)**
+
 Under the realization of the following fact:
 a shopping cart can only make sense when there is a user otherwise it doesn't exist
 it it safe to say that there is a composition relationship between a Customer and the shopping cart
@@ -87,6 +102,7 @@ the user is able to interact with his cart throught a menu and perform actions (
 all of this is ensured via the Cart class 
 here is a diagram that explains the OOP implementation of the shopping cart
 ![enter image description here](https://i.imgur.com/qzubqsH.jpg)
+
 8.**Dynamic product search and filtering (feature)**
 The user is able ( via the shopping page interface throught the menu) to perform two search actions :
 - List all products in stock : 
@@ -96,10 +112,12 @@ the class SearchProduct provides a method that searches an item from a given use
 - auto searching vis filtering :
 the user is able to choose to apply a certain filtering option. A method provided by the FilteredProducts is responsible to generate a new collection of items based on the user's filter choice. The new collection is then provided back to be displayed in the menu 
 ![enter image description here](https://i.imgur.com/8InQF7z.jpg)
+
 9.**Payment checkout + Inventory updates (feature)**
 given the user's cart , when a user attemps to checkout his purchase the appropriate methods provided by PaymentCheckout class are responsible for checking if the quantities in stock for each item the user is trying to purchase is available or not .
 I provided implementation to handle the scneario where it is not , therefore the payment is refused  , otherwise it is accepted the cart is then cleared and the user's order is saved in a history 
 Please checkout the PaymentCheckout class i implemented for the detailed logic .
+
 10.**Transaction history (feature)**
 similary to the cart design , there is a composition relationship between the Customer class and Order class .
 the customer , when instanciated is given a Collection of Orders 
@@ -107,6 +125,7 @@ of course i used my utility class Collection
 The Order class represents an order with its id , the username of whoever made the order and of course the content of the order ,
 the user is able to access his history throughout the Customer menu 
 ![enter image description here](https://i.imgur.com/dxeBPDm.jpg)
+
 11.**Users rating system (optional feature)**
 This feature allows users to send feedback to the products in their transaction history (the products they purchased).
 Users are also able to  view ratings on each product in the market
@@ -117,6 +136,7 @@ and then be prompted for adding a product to his cart.
 a Rating is class modeling a customer's rating including number of stars given to the product ( 1 to 4 stars) and  feedback message 
 POO IMPLEMENTATION OF THIS FEATURE :
 ![enter image description here](https://i.imgur.com/Rp9wcKt.jpg)
+
 12.**Discount on cart total (optional feature)**
 The customer is able throught the menu to apply a discount percentage
 ,the class CustomNumberGenerator is responsible for generating a random discount amount
@@ -125,6 +145,7 @@ and calls the method provided by the CustomerNumberGenerator giving it the set o
 
 this OOP implementation provides a clean way to let the developer play around with the probabilities and the possible results without touching anything else in the code
 the user is able to try his luck throught the welcoming page menu
+
 
 11.**Basic Payment system(feature)**
 The user is prompted to enter his credit card credentials when he wants to issue the payment,
