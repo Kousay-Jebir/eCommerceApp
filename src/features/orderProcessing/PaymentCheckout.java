@@ -1,9 +1,11 @@
 package features.orderProcessing;
 
+import features.payment.Payment;
 import features.shoppingCart.Cart;
 import features.shoppingCart.CartProduct;
 import features.trasnactionHistory.Order;
 import features.userAuth.Customer;
+import features.utilityClasses.CustomRandomGenerator;
 
 import java.util.Scanner;
 
@@ -50,10 +52,23 @@ public class PaymentCheckout {
             } else {
 
                 //Payment interface
+
                 cartProduct.getAssosiatedProduct().setProductQuantity(quantityInStock - quantityInCart);
             }
 
+        }
 
+        //Payment interface
+        Payment.collectPaymentInformation();
+
+        //Simulate if user has enough credid in his credit card to pay the fees
+        float totalToPay = useCart.getTotalPrice();
+        float[] numbers = { totalToPay, 0f };
+        float[] probabilities = { 0.5f, 0.5f };
+        float generatedNumber = CustomRandomGenerator.generateNumber(numbers, probabilities);
+        if (generatedNumber == 0) {
+            System.out.println("Not enough credit in your cc maybe try generating a promotion discount :D");
+            return false;
         }
 
         return true;

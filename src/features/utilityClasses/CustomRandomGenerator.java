@@ -1,4 +1,4 @@
-package features.promotions;
+package features.utilityClasses;
 
 import java.util.Random;
 
