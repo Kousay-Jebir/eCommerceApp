@@ -41,7 +41,7 @@ public class App {
                     }
                 } catch (Exception e) {
                     // Handle the exception (e.g., print an error message)
-                    System.out.println("Error during authentication: ");
+                    System.out.println("Error // this handles any type of exception in the application: ");
                 }
             }
         }

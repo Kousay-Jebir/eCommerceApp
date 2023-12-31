@@ -2,8 +2,10 @@ package features.userAuth;
 
 import java.util.Scanner;
 
+import java.util.Random;
 import features.orderProcessing.PaymentCheckout;
 import features.productManagement.Product;
+import features.promotions.Discount;
 import features.search.FilteredProducts;
 import features.search.SearchProduct;
 import features.shoppingCart.Cart;
@@ -23,16 +25,13 @@ public class Customer extends User {
     }
 
     // Add this method to the Customer class
-    public void applyDiscount(float discountPercentage) {
-        if (discountPercentage >= 0 && discountPercentage <= 100) {
-            float discountFactor = 1 - (discountPercentage / 100);
-            float discountedTotal = customerCart.getTotalPrice() * discountFactor;
-            customerCart.setTotalPrice(discountedTotal);
-            System.out.println("Discount of " + discountPercentage + "% applied successfully!");
-            System.out.println("Updated Cart Total: $" + discountedTotal);
-        } else {
-            System.out.println("Invalid discount percentage. Please provide a value between 0 and 100.");
-        }
+    public void applyDiscount(float discountFactor) {
+
+        float discountedTotal = customerCart.getTotalPrice() * (1 - discountFactor);
+        customerCart.setTotalPrice(discountedTotal);
+        System.out.println("Discount of " + discountFactor * 100 + "% applied successfully!");
+        System.out.println("Updated Cart Total: $" + discountedTotal);
+
     }
 
     public void viewTransactionHistory() {
@@ -235,9 +234,8 @@ public class Customer extends User {
             if (!(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5))
                 isValidChoice = true;
             if (choice == 6) {
-                System.out.println("Enter the discount percentage:");
-                float discountPercentage = sc.nextFloat();
-                sc.nextLine(); // Consume the newline character
+                System.out.println("Generating a discount value");
+                float discountPercentage = Discount.tryingToGetDiscount();
                 applyDiscount(discountPercentage);
                 isValidChoice = true;
             }
